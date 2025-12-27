@@ -3,10 +3,11 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { HomePage } from '@src/pages/home-page'
 import { ProfilePage } from '@src/pages/profile-page'
+import { ROUTES } from '@src/shared/constants/routes'
 
 import { AppLayout } from '../layout/app-layout'
 
-const isUserLogged = false
+const isUserLogged = true
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   return isUserLogged ? children : <Navigate to="/login" replace />
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       // public
       {
-        path: '/',
+        path: ROUTES.home,
         element: (
           <PublicRoute>
             <HomePage />
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       // private
       {
-        path: '/profile',
+        path: ROUTES.profile,
         element: (
           <PrivateRoute>
             <ProfilePage />
